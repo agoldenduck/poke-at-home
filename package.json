@@ -4,11 +4,17 @@
   "private": true,
   "devDependencies": {
     "react-scripts": "1.1.0",
-    "react-snap": "^1.11.3"
+    "react-snap": "^1.11.3",
+    "@storybook/react": "^3.3.12",
+    "@storybook/addon-actions": "^3.3.12",
+    "@storybook/addon-links": "^3.3.12",
+    "@storybook/addons": "^3.3.12",
+    "babel-core": "^6.26.0"
   },
   "dependencies": {
     "apollo-client": "^2.2.2",
     "graphql": "^0.12.3",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-apollo": "^2.0.4",
     "react-dom": "^16.2.0",
@@ -22,7 +28,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build && react-snap",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "reactSnap": {
     "inlineCss": true
