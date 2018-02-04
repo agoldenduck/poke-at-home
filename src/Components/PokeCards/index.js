@@ -13,19 +13,19 @@ const PokeCards = ({ data: {loading, error, pokemons} }) => {
 
   return (
     <ul>
-      { console.log(pokemons)}
+      { console.log(pokemons) }
       { pokemons.map(poke => <li key={poke.id}>{poke.name}</li>) }
     </ul>
   )
 }
 
 PokeCards.propTypes = {
-  data: PropTypes.obj,
+  data: PropTypes.object.required,
 }
 
 const pokemonQuery = gql`
   query PokemonQuery {
-   pokemons(first:20) {
+   pokemons(first:151) {
      id
      name
    }
