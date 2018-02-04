@@ -1,0 +1,25 @@
+{
+  "env": {
+    "browser": true,
+    "jest/globals": true
+  },
+  "globals": {
+    "graphql": false
+  },
+  "plugins": ["jest"],
+  "extends": ["standard", "standard-react"],
+  "rules": {
+    "react/prop-types": [
+      "error",
+      {
+        "ignore": ["children"]
+      }
+    ],
+    "comma-dangle": ["error", "always-multiline"],
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error"
+  }
+}
