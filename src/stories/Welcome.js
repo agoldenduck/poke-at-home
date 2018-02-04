@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const styles = {
   main: {
@@ -22,8 +23,8 @@ const styles = {
   code: {
     fontSize: 15,
     fontWeight: 600,
-    padding: "2px 5px",
-    border: "1px solid #eae9e9",
+    padding: '2px 5px',
+    border: '1px solid #eae9e9',
     borderRadius: 4,
     backgroundColor: '#f3f2f2',
     color: '#3a3a3a',
@@ -33,8 +34,8 @@ const styles = {
     backgroundColor: '#f3f2f2',
     padding: '1px 10px',
     margin: '10px 0',
-  }
-};
+  },
+}
 
 const codeBlock = `
 // Add this code to "src/stories/index.js"
@@ -46,15 +47,20 @@ storiesOf('App', module)
   .add('default view', () => (
     &lt;App /&gt;
   ))
-`;
+`
 
-export default class Welcome extends React.Component {
-  showApp(e) {
-    e.preventDefault();
-    if(this.props.showApp) this.props.showApp();
+class Welcome extends React.Component {
+  constructor () {
+    super()
+    this.showApp = this.showApp.bind(this)
   }
 
-  render() {
+  showApp (e) {
+    e.preventDefault()
+    if (this.props.showApp) this.props.showApp()
+  }
+
+  render () {
     return (
       <div style={styles.main}>
         <h1>Welcome to STORYBOOK</h1>
@@ -63,13 +69,13 @@ export default class Welcome extends React.Component {
         </p>
         <p>
           We've added some basic stories inside the <code style={styles.code}>src/stories</code> directory.
-          <br/>
+          <br />
           A story is a single state of one or more UI components. You can have as many stories as you want.
-          <br/>
+          <br />
           (Basically a story is like a visual test case.)
         </p>
         <p>
-          See these sample <a style={styles.link} href='#' onClick={this.showApp.bind(this)}>stories</a> for a component called <code style={styles.code}>Button</code>.
+          See these sample <a style={styles.link} href='#' onClick={this.showApp}>stories</a> for a component called <code style={styles.code}>Button</code>.
         </p>
         <p>
           Just like that, you can add your own components as stories.
@@ -82,9 +88,15 @@ export default class Welcome extends React.Component {
         </p>
         <p>
           Usually we create stories with smaller UI components in the app.<br />
-          Have a look at the <a style={styles.link} href="https://getstorybook.io/docs/basics/writing-stories" target="_blank">Writing Stories</a> section in our documentation.
+          Have a look at the <a style={styles.link} href='https://getstorybook.io/docs/basics/writing-stories' target='_blank'>Writing Stories</a> section in our documentation.
         </p>
       </div>
-    );
+    )
   }
 }
+
+Welcome.propTypes = {
+  showApp: PropTypes.func,
+}
+
+export default Welcome
