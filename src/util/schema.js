@@ -6,8 +6,21 @@ type: Pokemon {
     minimum
     maximum
   }
+  height {
+    minimum
+    maximum
+  }
   name
+  types
+  classification
+  resistant
+  weaknesses
   attacks {
+    fast {
+      name
+      type
+      damage
+    }
     special {
       name
       type

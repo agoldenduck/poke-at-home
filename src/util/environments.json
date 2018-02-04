@@ -1,0 +1,110 @@
+[
+  {
+    "type": "coastal",
+    "happy": [
+      "Normal",
+      "Water",
+      "Flying"
+    ],
+    "unhappy": [
+      "Fire",
+      "Ground",
+      "Rock"
+    ]
+  },
+  {
+    "type": "urban",
+    "happy": [
+      "Normal",
+      "steel",
+      "Flying",
+      "Electric",
+      "Bug",
+      "Poison",
+      "Dark"
+    ],
+    "unhappy": [
+      "Dragon",
+      "Rock",
+      "Ice"
+    ]
+  },
+  {
+    "type": "arid",
+    "happy": [
+      "Normal",
+      "Poison",
+      "Ground",
+      "Rock",
+      "Ghost",
+      "Fire"
+    ],
+    "unhappy": [
+      "Water",
+      "Grass",
+      "Ice"
+    ]
+  },
+  {
+    "type": "plains",
+    "happy": [
+      "Normal",
+      "Flying",
+      "Ground",
+      "Bug",
+      "Grass"
+    ],
+    "unhappy": [
+      "Poison",
+      "Rock",
+      "steel",
+      "Fire",
+      "Electric"
+    ]
+  },
+  {
+    "type": "forest",
+    "happy": [
+      "Normal",
+      "Flying",
+      "Bug",
+      "Dark"
+    ],
+    "unhappy": [
+      "Grass",
+      "Fire",
+      "Psychic"
+    ]
+  },
+  {
+    "type": "alpine",
+    "happy": [
+      "Normal",
+      "Rock",
+      "Flying",
+      "Fire",
+      "Dragon",
+      "Dark"
+    ],
+    "unhappy": [
+      "Water",
+      "Fight",
+      "Bug",
+      "Grass"
+    ]
+  },
+  {
+    "type": "polar",
+    "happy": [
+      "Normal",
+      "Ice",
+      "Water",
+      "Flying"
+    ],
+    "unhappy": [
+      "Fire",
+      "Ground",
+      "Rock"
+    ]
+  }
+]

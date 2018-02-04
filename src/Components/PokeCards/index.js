@@ -2,6 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import {
+  averageMaxDimension, maxMaxDimension, minMaxDimension, sortPokemonByEnvironments,
+  standardDeviationMaxDimension,
+} from '../../util/pokeChooser'
+import * as env from '../../util/environments'
 
 const PokeCards = ({ data: {loading, error, pokemons} }) => {
   if (loading) {
@@ -13,8 +18,18 @@ const PokeCards = ({ data: {loading, error, pokemons} }) => {
 
   return (
     <ul>
-      { console.log(pokemons) }
+      { console.log(
+        'Min weight:    ', minMaxDimension(pokemons, 'weight'),
+        '\nAverage weight:', averageMaxDimension(pokemons, 'weight'),
+        '\nMax weight:    ', maxMaxDimension(pokemons, 'weight'),
+        '\nStd Dev weight:', standardDeviationMaxDimension(pokemons, 'weight'),
+        '\n\nMin height:    ', minMaxDimension(pokemons, 'height'),
+        '\nAverage height:', averageMaxDimension(pokemons, 'height'),
+        '\nMax height:    ', maxMaxDimension(pokemons, 'height'),
+        '\nStd Dev height:', standardDeviationMaxDimension(pokemons, 'height')
+      ) }
       { pokemons.map(poke => <li key={poke.id}>{poke.name}</li>) }
+      { sortPokemonByEnvironments(pokemons, env.filter(en => ['coastal', 'urban'].includes(en.type))) }
     </ul>
   )
 }
@@ -25,10 +40,17 @@ PokeCards.propTypes = {
 
 const pokemonQuery = gql`
   query PokemonQuery {
-   pokemons(first:151) {
-     id
-     name
-   }
+    pokemons(first:151) {
+      id
+      name
+      weight {
+        maximum
+      }
+      height {
+        maximum
+      }
+      types
+    }
   }
 `
 
