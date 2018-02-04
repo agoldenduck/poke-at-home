@@ -41,7 +41,6 @@
     "build": "react-scripts build && react-snap",
     "test": "react-scripts test --env=jsdom",
     "lint": "eslint --ext .js,.jsx src/",
-    "prepublish": "yarn run lint && yarn test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"

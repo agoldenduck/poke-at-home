@@ -20,7 +20,7 @@ const PokeCards = ({ data: {loading, error, pokemons} }) => {
 }
 
 PokeCards.propTypes = {
-  data: PropTypes.object.required,
+  data: PropTypes.object.isRequired,
 }
 
 const pokemonQuery = gql`
