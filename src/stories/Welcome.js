@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const styles = {
   main: {
@@ -48,7 +49,12 @@ storiesOf('App', module)
   ))
 `
 
-export default class Welcome extends React.Component {
+class Welcome extends React.Component {
+  constructor () {
+    super()
+    this.showApp = this.showApp.bind(this)
+  }
+
   showApp (e) {
     e.preventDefault()
     if (this.props.showApp) this.props.showApp()
@@ -69,7 +75,7 @@ export default class Welcome extends React.Component {
           (Basically a story is like a visual test case.)
         </p>
         <p>
-          See these sample <a style={styles.link} href='#' onClick={this.showApp.bind(this)}>stories</a> for a component called <code style={styles.code}>Button</code>.
+          See these sample <a style={styles.link} href='#' onClick={this.showApp}>stories</a> for a component called <code style={styles.code}>Button</code>.
         </p>
         <p>
           Just like that, you can add your own components as stories.
@@ -88,3 +94,9 @@ export default class Welcome extends React.Component {
     )
   }
 }
+
+Welcome.propTypes = {
+  showApp: PropTypes.func,
+}
+
+export default Welcome

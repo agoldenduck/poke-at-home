@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
@@ -12,10 +13,14 @@ const PokeCards = ({ data: {loading, error, pokemons} }) => {
 
   return (
     <ul>
-      { console.log(pokemons )}
+      { console.log(pokemons)}
       { pokemons.map(poke => <li key={poke.id}>{poke.name}</li>) }
     </ul>
   )
+}
+
+PokeCards.propTypes = {
+  data: PropTypes.obj,
 }
 
 const pokemonQuery = gql`
