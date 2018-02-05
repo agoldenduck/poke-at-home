@@ -26,22 +26,23 @@ const maxMaxDimension = (pokemon, dimension) =>
     extractNumber(pokemon[0][dimension].maximum)
   )
 
-const calcPokemonHappiness = (pokemon, envs) => envs.reduce(
-  (tally, env) =>
-    tally +
-    env.happy.filter(type => pokemon.types.includes(type)).length -
-    env.unhappy.filter(type => pokemon.types.includes(type)).length * 5,
-  0
+const getHappinessNumber = (pokemon, env) => (
+  env.happy.filter(type => pokemon.types.includes(type)).length * 2 +
+  env.content.filter(type => pokemon.types.includes(type)).length -
+  env.unhappy.filter(type => pokemon.types.includes(type)).length * 5
 )
 
-const sortPokemonByEnvironments = (pokemon, environments) => {
-  pokemon.forEach(poke => console.log(poke.name, calcPokemonHappiness(poke, environments)))
-}
+const calcPokemonHappiness = (pokemon, envs) => envs.reduce(
+  (tally, env) => tally + getHappinessNumber(pokemon, env), 0
+) / pokemon.types.length
+
+const sortPokemonByEnvironments = (pokemon, environments) =>
+  [...pokemon].sort((a, b) => calcPokemonHappiness(b, environments) - calcPokemonHappiness(a, environments))
 
 export {
   averageMaxDimension,
   minMaxDimension,
   maxMaxDimension,
   standardDeviationMaxDimension,
-  sortPokemonByEnvironments
+  sortPokemonByEnvironments,
 }

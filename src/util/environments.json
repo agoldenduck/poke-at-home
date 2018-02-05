@@ -2,9 +2,22 @@
   {
     "type": "coastal",
     "happy": [
-      "Normal",
       "Water",
+      "Electric",
       "Flying"
+    ],
+    "content": [
+      "Bug",
+      "Dark",
+      "Dragon",
+      "Fighting",
+      "Ghost",
+      "Grass",
+      "Ice",
+      "Normal",
+      "Poison",
+      "Psychic",
+      "Steel"
     ],
     "unhappy": [
       "Fire",
@@ -15,13 +28,22 @@
   {
     "type": "urban",
     "happy": [
-      "Normal",
-      "steel",
+      "Steel",
       "Flying",
       "Electric",
       "Bug",
-      "Poison",
-      "Dark"
+      "Poison"
+    ],
+    "content": [
+      "Dark",
+      "Fighting",
+      "Fire",
+      "Ghost",
+      "Grass",
+      "Ground",
+      "Normal",
+      "Psychic",
+      "Water"
     ],
     "unhappy": [
       "Dragon",
@@ -32,12 +54,23 @@
   {
     "type": "arid",
     "happy": [
-      "Normal",
       "Poison",
       "Ground",
       "Rock",
       "Ghost",
       "Fire"
+    ],
+    "content": [
+      "Bug",
+      "Dark",
+      "Dragon",
+      "Electric",
+      "Fighting",
+      "Flying",
+      "Ice",
+      "Normal",
+      "Psychic",
+      "Steel"
     ],
     "unhappy": [
       "Water",
@@ -54,10 +87,19 @@
       "Bug",
       "Grass"
     ],
-    "unhappy": [
+    "content": [
+      "Dark",
+      "Dragon",
+      "Fighting",
+      "Ghost",
+      "Ice",
       "Poison",
+      "Psychic",
+      "Water"
+    ],
+    "unhappy": [
       "Rock",
-      "steel",
+      "Steel",
       "Fire",
       "Electric"
     ]
@@ -65,12 +107,24 @@
   {
     "type": "forest",
     "happy": [
-      "Normal",
       "Flying",
       "Bug",
       "Dark"
     ],
+    "content": [
+      "Dragon",
+      "Electric",
+      "Fighting",
+      "Ghost",
+      "Ground",
+      "Ice",
+      "Normal",
+      "Poison",
+      "Steel",
+      "Water"
+    ],
     "unhappy": [
+      "Rock",
       "Grass",
       "Fire",
       "Psychic"
@@ -79,16 +133,25 @@
   {
     "type": "alpine",
     "happy": [
-      "Normal",
       "Rock",
-      "Flying",
       "Fire",
+      "Ice",
       "Dragon",
       "Dark"
     ],
+    "content": [
+      "Electric",
+      "Flying",
+      "Ghost",
+      "Ground",
+      "Normal",
+      "Poison",
+      "Psychic",
+      "Steel"
+    ],
     "unhappy": [
       "Water",
-      "Fight",
+      "Fighting",
       "Bug",
       "Grass"
     ]
@@ -96,13 +159,25 @@
   {
     "type": "polar",
     "happy": [
-      "Normal",
       "Ice",
       "Water",
       "Flying"
     ],
+    "content": [
+      "Bug",
+      "Dark",
+      "Dragon",
+      "Electric",
+      "Fighting",
+      "Ghost",
+      "Normal",
+      "Poison",
+      "Psychic",
+      "Steel"
+    ],
     "unhappy": [
       "Fire",
+      "Grass",
       "Ground",
       "Rock"
     ]

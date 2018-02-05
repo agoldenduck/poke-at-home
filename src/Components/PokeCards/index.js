@@ -16,6 +16,8 @@ const PokeCards = ({ data: {loading, error, pokemons} }) => {
     return <p>{error.message}</p>
   }
 
+  const pokemon = sortPokemonByEnvironments(pokemons, env.filter(en => ['coastal', 'urban'].includes(en.type)))
+
   return (
     <ul>
       { console.log(
@@ -28,8 +30,8 @@ const PokeCards = ({ data: {loading, error, pokemons} }) => {
         '\nMax height:    ', maxMaxDimension(pokemons, 'height'),
         '\nStd Dev height:', standardDeviationMaxDimension(pokemons, 'height')
       ) }
-      { pokemons.map(poke => <li key={poke.id}>{poke.name}</li>) }
-      { sortPokemonByEnvironments(pokemons, env.filter(en => ['coastal', 'urban'].includes(en.type))) }
+      { pokemon.map(poke => <li key={poke.id}>{poke.name}</li>) }
+      { console.log(pokemon) }
     </ul>
   )
 }
@@ -38,7 +40,7 @@ PokeCards.propTypes = {
   data: PropTypes.object.isRequired,
 }
 
-const pokemonQuery = gql`
+const POKEMON_QUERY = gql`
   query PokemonQuery {
     pokemons(first:151) {
       id
@@ -54,6 +56,6 @@ const pokemonQuery = gql`
   }
 `
 
-const PokeCardsWithData = graphql(pokemonQuery)(PokeCards)
+const PokeCardsWithData = graphql(POKEMON_QUERY)(PokeCards)
 
 export default PokeCardsWithData
