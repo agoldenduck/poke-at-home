@@ -2,10 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import Grid from 'material-ui/es/Grid'
+
 import pokeChooser from '../../util/pokeChooser'
 import * as param from '../../util/parameters'
+import PokeCard from '../../Components/PokeCard'
 
-const PokeCards = ({ data: {loading, error, pokemons} }) => {
+const PokeList = ({ data: {loading, error, pokemons} }) => {
   if (loading) {
     return <p>loading</p>
   }
@@ -18,13 +21,17 @@ const PokeCards = ({ data: {loading, error, pokemons} }) => {
   console.log(pokemon)
 
   return (
-    <ul>
-      { pokemon.map(poke => <li key={poke.id}>{poke.name}</li>) }
-    </ul>
+    <Grid container justify='center' spacing={24}>
+      { pokemon.map(poke => (
+        <Grid item xs={12} sm={3}>
+          <PokeCard key={poke.id}>{poke.name}</PokeCard>
+        </Grid>
+      )) }
+    </Grid>
   )
 }
 
-PokeCards.propTypes = {
+PokeList.propTypes = {
   data: PropTypes.object.isRequired,
 }
 
@@ -44,6 +51,4 @@ const POKEMON_QUERY = gql`
   }
 `
 
-const PokeCardsWithData = graphql(POKEMON_QUERY)(PokeCards)
-
-export default PokeCardsWithData
+export default graphql(POKEMON_QUERY)(PokeList)
