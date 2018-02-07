@@ -1,123 +1,115 @@
 const extractNumber = numString => Number(numString.split(/[km ]/i)[0])
 
-const averageMaxDimension = (pokemon, dimension) =>
-  pokemon.reduce((tally, poke) => tally + extractNumber(poke[dimension].maximum), 0) / pokemon.length
-
-const standardDeviationMaxDimension = (pokemon, dimension) => {
-  const AvgMaxDim = averageMaxDimension(pokemon, dimension)
+const getStandardDeviation = array => {
+  const average = array.reduce((tally, num) => tally + num) / array.length
   return Math.sqrt(
-    pokemon
-      .map(poke => Math.pow(extractNumber(poke[dimension].maximum) - AvgMaxDim, 2))
-      .reduce((tally, squareDiff) => tally + squareDiff, 0) / pokemon.length
+    array.map(num => Math.pow(num - average, 2)).reduce((tally, num) => tally + num) / array.length
   )
 }
-
-const minMaxDimension = (pokemon, dimension) =>
-  pokemon.reduce(
-    (min, poke) => {
-      const dimensionVal = extractNumber(poke[dimension].maximum)
-      return min < dimensionVal ? min : dimensionVal
-    },
-    extractNumber(pokemon[0][dimension].maximum)
-  )
-
-const maxMaxDimension = (pokemon, dimension) =>
-  pokemon.reduce(
-    (max, poke) => {
-      const dimensionVal = extractNumber(poke[dimension].maximum)
-      return max > dimensionVal ? max : dimensionVal
-    },
-    extractNumber(pokemon[0][dimension].maximum)
-  )
-
-const getHappinessNumber = (pokeTypes, env) => (
-  env.happy.filter(type => pokeTypes.includes(type)).length * 2 +
-  env.content.filter(type => pokeTypes.includes(type)).length -
-  env.unhappy.filter(type => pokeTypes.includes(type)).length * 5
-)
-
-// const calcPokemonHappiness = (pokemon, envs) => envs.reduce(
-//   (tally, env) => tally + getHappinessNumber(pokemon, env), 0
-// ) / pokemon.types.length
-
-// const sortPokemonByEnvironments = (pokemon, environments) =>
-//   [...pokemon].sort((a, b) => calcPokemonHappiness(b, environments) - calcPokemonHappiness(a, environments))
-
-/**
- * new code
- */
 
 const pokeChooser = (pokemon, param) => {
-  const { scoredPoke, globals } = getScores([...pokemon], param)
+  const { scoredPoke, maxs, weightList } = getScores([...pokemon], param)
+  const weights = getWeightHelpers(weightList, param.homeSize)
 
-  console.log(scoredPoke, globals)
-
-  sortPokemon(scoredPoke, globals, param.homeSize)
+  return sortPokemon(scoredPoke, maxs, weights)
 }
 
-const getScore = (types, json) =>
-  json.reduce(
+const getHappinessNumber = (pokeTypes, param) => (
+  param.happy.filter(type => pokeTypes.includes(type)).length * 2 +
+  param.content.filter(type => pokeTypes.includes(type)).length -
+  param.unhappy.filter(type => pokeTypes.includes(type)).length * 5
+)
+
+const getScore = (types, param) =>
+  param.reduce(
     (tally, env) => tally + getHappinessNumber(types, env), 0
   ) / types.length
 
 const getScores = (pokemon, param) =>
   pokemon.reduce((result, poke) => {
-    let scoredPoke = {...poke}
-    scoredPoke.envScore = getScore(poke.types, param.env)
-    scoredPoke.featureScore = getScore(poke.types, param.features)
+    let scoredPoke = {
+      ...poke,
+      weight: extractNumber(poke.weight.maximum),
+      envScore: getScore(poke.types, param.env),
+      featureScore: getScore(poke.types, param.features),
+    }
 
-    if (result.globals.maxEnv < scoredPoke.envScore) result.globals.maxEnv = scoredPoke.envScore
-    if (result.globals.maxFeatures < scoredPoke.featureScore) result.globals.maxFeatures = scoredPoke.featureScore
+    if (result.maxs.maxEnv < scoredPoke.envScore) result.maxs.maxEnv = scoredPoke.envScore
+    if (result.maxs.maxFeatures < scoredPoke.featureScore) result.maxs.maxFeatures = scoredPoke.featureScore
 
     result.scoredPoke.push(scoredPoke)
-    result.globals.weights.push(extractNumber(poke.weight.maximum))
+    result.weightList.push(scoredPoke.weight)
 
     return result
   }, {
     scoredPoke: [],
-    globals: {
+    maxs: {
       maxEnv: 0,
       maxFeatures: 0,
-      weights: [],
     },
+    weightList: [],
   })
 
-const sortPokemon = (pokemon, globals, homeSize) => {
-  const idealSize = Math.max(globals.weights) * homeSize / 18
-  pokemon.sort((a, b) => {
+const getWeightSteps = weights =>
+  weights
+    .sort((a, b) => a - b)
+    .reduce(
+      (weightGroups, weight) => {
+        if (weightGroups[weightGroups.length - 1].length < Math.ceil(weights.length / 19)) {
+          weightGroups[weightGroups.length - 1].push(weight)
+        } else {
+          weightGroups.push([weight])
+        }
+        return weightGroups
+      }, [[]]
+    )
+    .map(weightGroup => Math.max(...weightGroup))
 
-  })
+const getWeightedDeviationsFromIdeal = (num, ideal, sd) => {
+  const diff = ideal - num
+  return diff < 0 ? Math.min(-diff * 3, Math.pow(diff, 2)) / sd : diff / sd
 }
 
-// const getHappinessScore = (pokemon, sortObj) => {
-//   const { ds, ads } = getSizeDeviation(pokemon, sortObj)
-//   getWeightedEnvHappiness(pokemon, 'hi')
-// }
+const getWeightHelpers = (weights, homeSize) => {
+  const steps = getWeightSteps(weights)
+  const sd = getStandardDeviation(weights)
+
+  const averageDeviationFromIdealWeight = weights
+    .reduce(
+      (tally, weight) =>
+        tally + getWeightedDeviationsFromIdeal(weight, steps[homeSize], sd),
+      0
+    ) / weights.length
+
+  return {
+    sd,
+    ideal: steps[homeSize],
+    ads: averageDeviationFromIdealWeight,
+  }
+}
+
+const calculateETV = (pokemon, maxs, weights) => {
+  const e = pokemon.envScore
+  const me = maxs.maxEnv
+  const f = pokemon.featureScore
+  const mf = maxs.maxFeatures
+  const ds = getWeightedDeviationsFromIdeal(pokemon.weight, weights.ideal, weights.sd)
+  const ads = weights.ads
+
+  return (Math.abs(e) / me * ds) + ((1 - e / me) * ads) + (Math.abs(f) / mf * ds) + ((1 - f / mf) * ads)
+}
+
+const sortPokemon = (pokemon, maxs, weights) => {
+  const sortablePoke = pokemon.map(poke =>
+    ({ ...poke, etv: calculateETV(poke, maxs, weights) })
+  )
+
+  return sortablePoke.sort((a, b) => a.etv - b.etv)
+}
 
 export default pokeChooser
 
 export {
-  averageMaxDimension,
-  minMaxDimension,
-  maxMaxDimension,
-  standardDeviationMaxDimension,
+  extractNumber,
+  getStandardDeviation,
 }
-
-/*
-param
-  [env]
-  idealSize
-  [features]
-
-calcObj
-  maxEnv
-  maxFeatures
-  averageSizeDeviation
-  avgWeight
-
-tempPokeObj
-  [poke]
-    id
-    envScore
-    featuresScore
- */

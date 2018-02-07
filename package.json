@@ -1,6 +1,6 @@
 {
-  "name": "poke-stop",
-  "version": "0.1.0",
+  "name": "pokemon-trainers-guild",
+  "version": "0.2.0",
   "private": true,
   "devDependencies": {
     "@storybook/addon-actions": "^3.3.12",

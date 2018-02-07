@@ -1,5 +1,5 @@
-import { standardDeviationMaxDimension } from './pokeChooser'
-import * as env from './parameters'
+import pokeChooser, { extractNumber, getStandardDeviation } from './pokeChooser'
+import * as param from './parameters'
 
 const testPokemon = [
   {
@@ -52,11 +52,16 @@ const testPokemon = [
   },
 ]
 
-it('returns 2 for the standard deviation of test pokemon weight', () => {
-  expect(standardDeviationMaxDimension(testPokemon, 'weight')).toBe(2)
+it('returns 4 for maximum weight of Mankey', () => {
+  const Mankey = testPokemon.filter(poke => poke.name === 'Mankey')[0]
+  expect(extractNumber(Mankey.weight.maximum)).toBe(4)
 })
 
-// it(`returns 'Butterfree' as happiest in 'polar', 'urban' environment`, () => {
-//   const newPokemon = sortPokemonByEnvironments(testPokemon, env.default.filter(en => ['polar', 'urban'].includes(en.type)))
-//   expect(newPokemon[0].name).toBe('Butterfree')
-// })
+it('returns 2 for the standard deviation of test pokemon weight', () => {
+  expect(getStandardDeviation(testPokemon.map(poke => extractNumber(poke.weight.maximum)))).toBe(2)
+})
+
+it(`returns 'Butterfree' as happiest in all environments`, () => {
+  const newPokemon = pokeChooser(testPokemon, param)
+  expect(newPokemon[0].name).toBe('Butterfree')
+})

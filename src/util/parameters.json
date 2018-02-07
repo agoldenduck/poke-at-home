@@ -146,11 +146,11 @@
         "Ghost",
         "Ground",
         "Normal",
-        "Poison",
         "Psychic",
         "Steel"
       ],
       "unhappy": [
+        "Poison",
         "Water",
         "Fighting",
         "Bug",
@@ -172,7 +172,6 @@
         "Fighting",
         "Ghost",
         "Normal",
-        "Poison",
         "Psychic",
         "Steel"
       ],
@@ -180,6 +179,7 @@
         "Fire",
         "Grass",
         "Ground",
+        "Poison",
         "Rock"
       ]
     }
@@ -211,5 +211,6 @@
         "Rock"
       ]
     }
-  ]
+  ],
+  "homeSize": 5
 }
