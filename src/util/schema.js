@@ -6,8 +6,21 @@ type: Pokemon {
     minimum
     maximum
   }
+  height {
+    minimum
+    maximum
+  }
   name
+  types
+  classification
+  resistant
+  weaknesses
   attacks {
+    fast {
+      name
+      type
+      damage
+    }
     special {
       name
       type
@@ -35,3 +48,23 @@ type: Pokemon {
 type: Query {
   pokemon: [Pokemon]
 `
+
+/** types
+ "Bug",
+ "Dark",
+ "Dragon",
+ "Electric",
+ "Fight",
+ "Fire",
+ "Flying",
+ "Ghost",
+ "Grass",
+ "Ground",
+ "Ice",
+ "Normal",
+ "Poison",
+ "Psychic",
+ "Rock",
+ "Steel",
+ "Water"
+*/

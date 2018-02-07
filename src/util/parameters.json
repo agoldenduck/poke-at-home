@@ -1,0 +1,216 @@
+{
+  "env": [
+    {
+      "type": "coastal",
+      "happy": [
+        "Water",
+        "Electric",
+        "Flying"
+      ],
+      "content": [
+        "Bug",
+        "Dark",
+        "Dragon",
+        "Fighting",
+        "Ghost",
+        "Grass",
+        "Ice",
+        "Normal",
+        "Poison",
+        "Psychic",
+        "Steel"
+      ],
+      "unhappy": [
+        "Fire",
+        "Ground",
+        "Rock"
+      ]
+    },
+    {
+      "type": "urban",
+      "happy": [
+        "Steel",
+        "Flying",
+        "Electric",
+        "Bug",
+        "Poison"
+      ],
+      "content": [
+        "Dark",
+        "Fighting",
+        "Fire",
+        "Ghost",
+        "Grass",
+        "Ground",
+        "Normal",
+        "Psychic",
+        "Water"
+      ],
+      "unhappy": [
+        "Dragon",
+        "Rock",
+        "Ice"
+      ]
+    },
+    {
+      "type": "arid",
+      "happy": [
+        "Poison",
+        "Ground",
+        "Rock",
+        "Ghost",
+        "Fire"
+      ],
+      "content": [
+        "Bug",
+        "Dark",
+        "Dragon",
+        "Electric",
+        "Fighting",
+        "Flying",
+        "Ice",
+        "Normal",
+        "Psychic",
+        "Steel"
+      ],
+      "unhappy": [
+        "Water",
+        "Grass",
+        "Ice"
+      ]
+    },
+    {
+      "type": "plains",
+      "happy": [
+        "Normal",
+        "Flying",
+        "Ground",
+        "Bug",
+        "Grass"
+      ],
+      "content": [
+        "Dark",
+        "Dragon",
+        "Fighting",
+        "Ghost",
+        "Ice",
+        "Poison",
+        "Psychic",
+        "Water"
+      ],
+      "unhappy": [
+        "Rock",
+        "Steel",
+        "Fire",
+        "Electric"
+      ]
+    },
+    {
+      "type": "forest",
+      "happy": [
+        "Flying",
+        "Bug",
+        "Dark"
+      ],
+      "content": [
+        "Dragon",
+        "Electric",
+        "Fighting",
+        "Ghost",
+        "Ground",
+        "Ice",
+        "Normal",
+        "Poison",
+        "Steel",
+        "Water"
+      ],
+      "unhappy": [
+        "Rock",
+        "Grass",
+        "Fire",
+        "Psychic"
+      ]
+    },
+    {
+      "type": "alpine",
+      "happy": [
+        "Rock",
+        "Fire",
+        "Ice",
+        "Dragon",
+        "Dark"
+      ],
+      "content": [
+        "Electric",
+        "Flying",
+        "Ghost",
+        "Ground",
+        "Normal",
+        "Psychic",
+        "Steel"
+      ],
+      "unhappy": [
+        "Poison",
+        "Water",
+        "Fighting",
+        "Bug",
+        "Grass"
+      ]
+    },
+    {
+      "type": "polar",
+      "happy": [
+        "Ice",
+        "Water",
+        "Flying"
+      ],
+      "content": [
+        "Bug",
+        "Dark",
+        "Dragon",
+        "Electric",
+        "Fighting",
+        "Ghost",
+        "Normal",
+        "Psychic",
+        "Steel"
+      ],
+      "unhappy": [
+        "Fire",
+        "Grass",
+        "Ground",
+        "Poison",
+        "Rock"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "type": "balcony",
+      "happy": [
+        "Ice",
+        "Water",
+        "Flying"
+      ],
+      "content": [
+        "Bug",
+        "Dark",
+        "Dragon",
+        "Electric",
+        "Fighting",
+        "Ghost",
+        "Normal",
+        "Poison",
+        "Psychic",
+        "Steel"
+      ],
+      "unhappy": [
+        "Fire",
+        "Grass",
+        "Ground",
+        "Rock"
+      ]
+    }
+  ],
+  "homeSize": 5
+}
