@@ -23,8 +23,10 @@ const PokeList = ({ data: {loading, error, pokemons} }) => {
   return (
     <Grid container justify='center' spacing={24}>
       { pokemon.map(poke => (
-        <Grid item xs={12} sm={3}>
-          <PokeCard key={poke.id}>{poke.name}</PokeCard>
+        <Grid key={poke.id} item xs={12} sm={3}>
+          <PokeCard
+            pokemon={poke}
+          />
         </Grid>
       )) }
     </Grid>
@@ -40,10 +42,8 @@ const POKEMON_QUERY = gql`
     pokemons(first:151) {
       id
       name
+      image
       weight {
-        maximum
-      }
-      height {
         maximum
       }
       types

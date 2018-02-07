@@ -5,6 +5,7 @@ import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { MuiThemeProvider } from 'material-ui/styles'
 
+import light from '../theme/light'
 import PokeList from '../Layouts/PokeList'
 
 const client = new ApolloClient({
@@ -16,7 +17,7 @@ class App extends Component {
   render () {
     return (
       <ApolloProvider client={client}>
-        <MuiThemeProvider>
+        <MuiThemeProvider theme={light}>
           <PokeList />
         </MuiThemeProvider>
       </ApolloProvider>

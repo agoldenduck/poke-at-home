@@ -1,15 +1,28 @@
 import React from 'react'
-import Card, { CardContent } from 'material-ui/Card'
+import Card, { CardMedia, CardContent } from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
+import { withStyles } from 'material-ui/styles'
 
-const PokeCard = props => (
+const styles = {
+  media: {
+    height: 300,
+  },
+}
+
+const PokeCard = ({ pokemon, classes }) => (
   <Card>
+    <CardMedia
+      image={pokemon.image}
+      title={pokemon.name}
+      className={classes.media}
+    />
+
     <CardContent>
       <Typography>
-        { props.children }
+        { pokemon.name }
       </Typography>
     </CardContent>
   </Card>
 )
 
-export default PokeCard
+export default withStyles(styles)(PokeCard)
