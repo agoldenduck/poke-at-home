@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Card, { CardMedia, CardContent } from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 import { withStyles } from 'material-ui/styles'
@@ -24,5 +25,10 @@ const PokeCard = ({ pokemon, classes }) => (
     </CardContent>
   </Card>
 )
+
+PokeCard.propTypes = {
+  classes: PropTypes.object.isRequired,
+  pokemon: PropTypes.object.isRequired,
+}
 
 export default withStyles(styles)(PokeCard)
