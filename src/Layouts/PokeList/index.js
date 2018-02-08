@@ -2,13 +2,24 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
-import Grid from 'material-ui/es/Grid'
+import Grid from 'material-ui/Grid'
+import { withStyles } from 'material-ui/styles'
 
 import pokeChooser from '../../util/pokeChooser'
 import * as param from '../../util/parameters'
 import PokeCard from '../../Components/PokeCard'
 
-const PokeList = ({ data: {loading, error, pokemons} }) => {
+const style = {
+  container: {
+    padding: 24,
+    width: '100%',
+  },
+  card: {
+    width: 300,
+  },
+}
+
+const PokeList = ({ data: {loading, error, pokemons}, classes }) => {
   if (loading) {
     return <p>loading</p>
   }
@@ -21,9 +32,9 @@ const PokeList = ({ data: {loading, error, pokemons} }) => {
   console.log(pokemon)
 
   return (
-    <Grid container justify='center' spacing={24}>
+    <Grid container justify='center' className={classes.container} spacing={24}>
       { pokemon.map(poke => (
-        <Grid key={poke.id} item xs={12} sm={3}>
+        <Grid key={poke.id} item className={classes.card}>
           <PokeCard
             pokemon={poke}
           />
@@ -35,6 +46,7 @@ const PokeList = ({ data: {loading, error, pokemons} }) => {
 
 PokeList.propTypes = {
   data: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
 }
 
 const POKEMON_QUERY = gql`
@@ -51,4 +63,4 @@ const POKEMON_QUERY = gql`
   }
 `
 
-export default graphql(POKEMON_QUERY)(PokeList)
+export default graphql(POKEMON_QUERY)(withStyles(style)(PokeList))
