@@ -4,6 +4,7 @@ import { ApolloProvider } from 'react-apollo'
 import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { MuiThemeProvider } from 'material-ui/styles'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 import light from '../theme/light'
 import PokeList from '../Layouts/PokeList'
@@ -18,7 +19,12 @@ class App extends Component {
     return (
       <ApolloProvider client={client}>
         <MuiThemeProvider theme={light}>
-          <PokeList />
+          <Router>
+            <div>
+              <Route exact path='/' component={PokeList} />
+              <Route path='/poke' component={PokeList} />
+            </div>
+          </Router>
         </MuiThemeProvider>
       </ApolloProvider>
     )
