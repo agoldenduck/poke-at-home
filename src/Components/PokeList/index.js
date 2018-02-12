@@ -7,7 +7,8 @@ import { withStyles } from 'material-ui/styles'
 
 import pokeChooser from '../../util/pokeChooser'
 import * as param from '../../util/parameters'
-import PokeCard from '../../Components/PokeCard'
+import PokeCard from '../PokeCard/index'
+import store$, { collectPokemon } from '../../util/state'
 
 const style = {
   container: {
@@ -29,7 +30,9 @@ const PokeList = ({ data: {loading, error, pokemons}, classes }) => {
 
   const pokemon = pokeChooser(pokemons, param)
 
-  console.log(pokemon)
+  collectPokemon(pokemon)
+
+  store$.subscribe((state) => console.log({...state}))
 
   return (
     <Grid container justify='center' className={classes.container} spacing={24}>

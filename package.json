@@ -37,6 +37,7 @@
     "react-router-dom": "^4.2.2",
     "recompose": "^0.26.0",
     "rxjs": "^5.5.6",
+    "rxjs-react-component": "^0.2.5",
     "typeface-roboto": "^0.0.54"
   },
   "scripts": {

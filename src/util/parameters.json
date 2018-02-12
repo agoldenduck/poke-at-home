@@ -188,27 +188,79 @@
     {
       "type": "balcony",
       "happy": [
-        "Ice",
-        "Water",
-        "Flying"
+        "Electric",
+        "Flying",
+        "Psychic"
       ],
       "content": [
         "Bug",
-        "Dark",
         "Dragon",
-        "Electric",
         "Fighting",
+        "Fire",
         "Ghost",
+        "Ice",
         "Normal",
         "Poison",
-        "Psychic",
-        "Steel"
+        "Steel",
+        "Water"
       ],
       "unhappy": [
-        "Fire",
+        "Dark",
         "Grass",
         "Ground",
         "Rock"
+      ]
+    },
+    {
+      "type": "pool",
+      "happy": [
+        "Dark",
+        "Ice",
+        "Poison",
+        "Water"
+      ],
+      "content": [
+        "Bug",
+        "Dragon",
+        "Fighting",
+        "Flying",
+        "Grass",
+        "Ground",
+        "Normal",
+        "Psychic",
+        "Rock",
+        "Steel"
+      ],
+      "unhappy": [
+        "Electric",
+        "Fire",
+        "Ghost"
+      ]
+    },
+    {
+      "type": "fire",
+      "happy": [
+        "Dragon",
+        "Fire",
+        "Steel"
+      ],
+      "content": [
+        "Bug",
+        "Electric",
+        "Fighting",
+        "Flying",
+        "Ghost",
+        "Ground",
+        "Normal",
+        "Poison",
+        "Psychic",
+        "Rock"
+      ],
+      "unhappy": [
+        "Dark",
+        "Ice",
+        "Grass",
+        "Water"
       ]
     }
   ],
