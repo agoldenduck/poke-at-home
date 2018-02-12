@@ -1,12 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ObservableComponent from 'rxjs-react-component'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import Grid from 'material-ui/Grid'
 import { withStyles } from 'material-ui/styles'
 
-import pokeChooser from '../../util/pokeChooser'
-import * as param from '../../util/parameters'
 import PokeCard from '../PokeCard/index'
 import store$, { collectPokemon } from '../../util/state'
 
@@ -20,31 +19,36 @@ const style = {
   },
 }
 
-const PokeList = ({ data: {loading, error, pokemons}, classes }) => {
-  if (loading) {
-    return <p>loading</p>
-  }
-  if (error) {
-    return <p>{error.message}</p>
+class PokeList extends ObservableComponent {
+  componentWillMount$ () {
+    return store$
   }
 
-  const pokemon = pokeChooser(pokemons, param)
+  componentWillReceiveProps (nextProps) {
+    const { data: { pokemons } } = nextProps
 
-  collectPokemon(pokemon)
+    if (typeof pokemons !== 'undefined') collectPokemon(pokemons)
+  }
 
-  store$.subscribe((state) => console.log({...state}))
+  render () {
+    const { data: { loading, error }, classes } = this.props
+    const { pokemon } = this.state
 
-  return (
-    <Grid container justify='center' className={classes.container} spacing={24}>
-      { pokemon.map(poke => (
-        <Grid key={poke.id} item className={classes.card}>
-          <PokeCard
-            pokemon={poke}
-          />
-        </Grid>
-      )) }
-    </Grid>
-  )
+    if (loading) return <p>loading</p>
+    if (error) return <p>{error.message}</p>
+
+    return (
+      <Grid container justify='center' className={classes.container} spacing={24}>
+        { pokemon.map(poke => (
+          <Grid key={poke.id} item className={classes.card}>
+            <PokeCard
+              pokemon={poke}
+            />
+          </Grid>
+        )) }
+      </Grid>
+    )
+  }
 }
 
 PokeList.propTypes = {

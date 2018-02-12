@@ -35,7 +35,7 @@ class PokeForm extends ObservableComponent {
 
   render () {
     const { classes } = this.props
-    console.log(this.state)
+    const { propertyType, rooms, yard, environments, features } = this.state
     return (
       <div className={classes.container}>
         <Typography variant='title'>Describe your home</Typography>
@@ -48,7 +48,7 @@ class PokeForm extends ObservableComponent {
             margin='normal'
             label='Property type'
             name='type'
-            value={this.state.propertyType}
+            value={propertyType}
             onChange={e => setProperty('type', e.target.value)}
             className={classes.select}
           >
@@ -68,7 +68,7 @@ class PokeForm extends ObservableComponent {
             margin='normal'
             label='Bedrooms'
             name='rooms'
-            value={this.state.rooms}
+            value={rooms}
             onChange={e => setProperty('rooms', e.target.value)}
             className={classes.select}
           >
@@ -100,7 +100,7 @@ class PokeForm extends ObservableComponent {
             margin='normal'
             label='Yard size'
             name='yard'
-            value={this.state.yard}
+            value={yard}
             onChange={e => setProperty('yard', e.target.value)}
             className={classes.select}
           >
@@ -135,7 +135,7 @@ class PokeForm extends ObservableComponent {
               </div>
             ),
           }}
-          value={this.state.environments}
+          value={environments}
           name='environments'
           label='Environments'
           onChange={e => setProperty('env', e.target.value)}
@@ -147,7 +147,7 @@ class PokeForm extends ObservableComponent {
               value={env.type}
               style={{
                 fontWeight:
-                      this.state.environments.includes(env.type) ? 'bold' : 'normal',
+                      environments.includes(env.type) ? 'bold' : 'normal',
               }}
             >
               {env.type}
@@ -161,8 +161,8 @@ class PokeForm extends ObservableComponent {
           <FormControlLabel
             control={
               <Checkbox
-                checked={this.state.features.includes('balcony')}
-                onChange={e => setList(this.state.features, e.target.value)}
+                checked={features.includes('balcony')}
+                onChange={e => setList(features, e.target.value)}
                 value='balcony'
               />
             }
@@ -171,8 +171,8 @@ class PokeForm extends ObservableComponent {
           <FormControlLabel
             control={
               <Checkbox
-                checked={this.state.features.includes('pool')}
-                onChange={e => setList(this.state.features, e.target.value)}
+                checked={features.includes('pool')}
+                onChange={e => setList(features, e.target.value)}
                 value='pool'
               />
             }
@@ -181,8 +181,8 @@ class PokeForm extends ObservableComponent {
           <FormControlLabel
             control={
               <Checkbox
-                checked={this.state.features.includes('fire')}
-                onChange={e => setList(this.state.features, e.target.value)}
+                checked={features.includes('fire')}
+                onChange={e => setList(features, e.target.value)}
                 value='fire'
               />
             }

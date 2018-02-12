@@ -29,7 +29,7 @@ const getScores = (pokemon, param) =>
   pokemon.reduce((result, poke) => {
     let scoredPoke = {
       ...poke,
-      weight: extractNumber(poke.weight.maximum),
+      weight: typeof poke.weight === 'object' ? extractNumber(poke.weight.maximum) : poke.weight,
       envScore: getScore(poke.types, param.env),
       featureScore: getScore(poke.types, param.features),
     }
@@ -90,9 +90,9 @@ const getWeightHelpers = (weights, homeSize) => {
 
 const calculateETV = (pokemon, maxs, weights) => {
   const e = pokemon.envScore
-  const me = maxs.maxEnv
+  const me = maxs.maxEnv || 1
   const f = pokemon.featureScore
-  const mf = maxs.maxFeatures
+  const mf = maxs.maxFeatures || 1
   const ds = getWeightedDeviationsFromIdeal(pokemon.weight, weights.ideal, weights.sd)
   const ads = weights.ads
 
