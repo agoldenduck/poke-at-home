@@ -1,4 +1,4 @@
-import React  from 'react'
+import React from 'react'
 import { ApolloClient } from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { createHttpLink } from 'apollo-link-http'
@@ -21,15 +21,16 @@ const App = () => (
     <MuiThemeProvider theme={light}>
       <Router>
         <div>
-          <Route exact path='/' component={PokeList} />
           <Route
-            path='/poke'
+            exact
+            path='/'
             render={() => (
               <WithDrawer drawerForm={<PokeForm />}>
                 <PokeList />
               </WithDrawer>
             )}
           />
+          <Route exact path='/poke' component={PokeList} />
           <Route path='/form' component={PokeForm} />
         </div>
       </Router>

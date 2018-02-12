@@ -8,6 +8,7 @@
     "@storybook/addons": "^3.3.12",
     "@storybook/react": "^3.3.12",
     "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
     "eslint": "^4.17.0",
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-config-standard-react": "^5.0.0",

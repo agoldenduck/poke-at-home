@@ -62,14 +62,14 @@ class WithDrawer extends React.Component {
     this.setState({ mobileOpen: !this.state.mobileOpen })
   }
 
-  render() {
+  render () {
     const { children, drawerForm, classes, theme } = this.props
     return (
       <div className={classes.root}>
         <div className={classes.appFrame}>
           <Hidden mdUp>
             <Drawer
-              variant="temporary"
+              variant='temporary'
               anchor={theme.direction === 'rtl' ? 'right' : 'left'}
               open={this.state.mobileOpen}
               classes={{
@@ -83,9 +83,9 @@ class WithDrawer extends React.Component {
               {drawerForm}
             </Drawer>
           </Hidden>
-          <Hidden smDown implementation="css">
+          <Hidden smDown implementation='css'>
             <Drawer
-              variant="permanent"
+              variant='permanent'
               open
               classes={{
                 paper: classes.drawerPaper,
