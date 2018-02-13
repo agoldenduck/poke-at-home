@@ -16,13 +16,13 @@
         "Grass",
         "Ice",
         "Normal",
-        "Poison",
         "Psychic",
         "Steel"
       ],
       "unhappy": [
         "Fire",
         "Ground",
+        "Poison",
         "Rock"
       ]
     },
@@ -32,8 +32,7 @@
         "Steel",
         "Flying",
         "Electric",
-        "Bug",
-        "Poison"
+        "Bug"
       ],
       "content": [
         "Dark",
@@ -43,6 +42,7 @@
         "Grass",
         "Ground",
         "Normal",
+        "Poison",
         "Psychic",
         "Water"
       ],
