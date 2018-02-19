@@ -10,10 +10,7 @@ import PokeCard from '../PokeCard/index'
 import store$, { collectPokemon } from '../../util/state'
 
 const style = {
-  container: {
-    padding: 24,
-    width: '100%',
-  },
+  container: {},
   card: {
     width: 300,
   },

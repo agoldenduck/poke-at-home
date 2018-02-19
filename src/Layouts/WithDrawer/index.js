@@ -1,7 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import MenuIcon from 'material-ui-icons/Menu'
+import EditIcon from 'material-ui-icons/Edit'
+import Button from 'material-ui/Button'
 import Hidden from 'material-ui/Hidden'
 import Drawer from 'material-ui/Drawer'
+import AppBar from 'material-ui/AppBar'
+import Toolbar from 'material-ui/Toolbar'
+import IconButton from 'material-ui/IconButton'
+// import List from 'material-ui/List'
+import Divider from 'material-ui/Divider'
+import Typography from 'material-ui/Typography'
 import { withStyles } from 'material-ui/styles'
 
 const drawerWidth = 240
@@ -9,7 +18,6 @@ const drawerWidth = 240
 const styles = theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing.unit * 3,
     zIndex: 1,
     overflow: 'hidden',
   },
@@ -26,6 +34,9 @@ const styles = theme => ({
       width: `calc(100% - ${drawerWidth}px)`,
     },
   },
+  pos: {
+    color: theme.palette.text.secondary,
+  },
   navIconHide: {
     [theme.breakpoints.up('md')]: {
       display: 'none',
@@ -36,7 +47,7 @@ const styles = theme => ({
     width: 250,
     [theme.breakpoints.up('md')]: {
       width: drawerWidth,
-      position: 'relative',
+      position: 'fixed',
       height: '100%',
     },
   },
@@ -49,6 +60,17 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       height: 'calc(100% - 64px)',
       marginTop: 64,
+    },
+    [theme.breakpoints.up('md')]: {
+      marginLeft: drawerWidth,
+    },
+  },
+  fab: {
+    position: 'fixed',
+    bottom: theme.spacing.unit * 3,
+    right: theme.spacing.unit * 3,
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
     },
   },
 })
@@ -64,9 +86,48 @@ class WithDrawer extends React.Component {
 
   render () {
     const { children, drawerForm, classes, theme } = this.props
+
+    const drawer = (
+      <div>
+        <div className={classes.drawerHeader} />
+
+        <Divider />
+
+        {/* <List>navListGoesHere</List> */}
+
+        {/* <Divider /> */}
+
+        {drawerForm}
+
+      </div>
+    )
+
     return (
       <div className={classes.root}>
         <div className={classes.appFrame}>
+          <AppBar className={classes.appBar}>
+            <Toolbar>
+              <IconButton
+                color='inherit'
+                aria-label='open drawer'
+                onClick={this.handleDrawerToggle}
+                className={classes.navIconHide}
+              >
+                <MenuIcon />
+              </IconButton>
+
+              <div>
+                <Typography variant='title' color='inherit' noWrap>
+                  Pok&eacute; @ Home
+                </Typography>
+
+                <Typography color='inherit' noWrap>
+                  Find the perfect Pok&eacute;mon for your home
+                </Typography>
+              </div>
+            </Toolbar>
+          </AppBar>
+
           <Hidden implementation='css' mdUp>
             <Drawer
               variant='temporary'
@@ -80,7 +141,7 @@ class WithDrawer extends React.Component {
                 keepMounted: true, // Better open performance on mobile.
               }}
             >
-              {drawerForm}
+              {drawer}
             </Drawer>
           </Hidden>
 
@@ -92,13 +153,23 @@ class WithDrawer extends React.Component {
                 paper: classes.drawerPaper,
               }}
             >
-              {drawerForm}
+              {drawer}
             </Drawer>
           </Hidden>
 
           <main className={classes.content}>
             {children}
           </main>
+
+          <Button
+            onClick={this.handleDrawerToggle}
+            variant='fab'
+            color='secondary'
+            aria-label='edit'
+            className={classes.fab}
+          >
+            <EditIcon />
+          </Button>
         </div>
       </div>
     )
