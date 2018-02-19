@@ -67,7 +67,7 @@ class WithDrawer extends React.Component {
     return (
       <div className={classes.root}>
         <div className={classes.appFrame}>
-          <Hidden mdUp>
+          <Hidden implementation='css' mdUp>
             <Drawer
               variant='temporary'
               anchor={theme.direction === 'rtl' ? 'right' : 'left'}
@@ -83,6 +83,7 @@ class WithDrawer extends React.Component {
               {drawerForm}
             </Drawer>
           </Hidden>
+
           <Hidden smDown implementation='css'>
             <Drawer
               variant='permanent'
@@ -94,6 +95,7 @@ class WithDrawer extends React.Component {
               {drawerForm}
             </Drawer>
           </Hidden>
+
           <main className={classes.content}>
             {children}
           </main>
