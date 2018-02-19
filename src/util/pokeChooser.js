@@ -9,7 +9,7 @@ const getStandardDeviation = array => {
 
 const pokeChooser = (pokemon, param) => {
   const { scoredPoke, maxs, weightList } = getScores([...pokemon], param)
-  const weights = getWeightHelpers(weightList, param.homeSize)
+  const weights = getWeightHelpers(weightList, Math.round(param.homeSize))
 
   return sortPokemon(scoredPoke, maxs, weights)
 }
@@ -29,7 +29,7 @@ const getScores = (pokemon, param) =>
   pokemon.reduce((result, poke) => {
     let scoredPoke = {
       ...poke,
-      weight: extractNumber(poke.weight.maximum),
+      weight: typeof poke.weight === 'object' ? extractNumber(poke.weight.maximum) : poke.weight,
       envScore: getScore(poke.types, param.env),
       featureScore: getScore(poke.types, param.features),
     }
@@ -70,29 +70,29 @@ const getWeightedDeviationsFromIdeal = (num, ideal, sd) => {
   return diff < 0 ? Math.min(-diff * 3, Math.pow(diff, 2)) / sd : diff / sd
 }
 
-const getWeightHelpers = (weights, homeSize) => {
+const getWeightHelpers = (weights, roundedHomeSize) => {
   const steps = getWeightSteps(weights)
   const sd = getStandardDeviation(weights)
 
   const averageDeviationFromIdealWeight = weights
     .reduce(
       (tally, weight) =>
-        tally + getWeightedDeviationsFromIdeal(weight, steps[homeSize], sd),
+        tally + getWeightedDeviationsFromIdeal(weight, steps[roundedHomeSize], sd),
       0
     ) / weights.length
 
   return {
     sd,
-    ideal: steps[homeSize],
+    ideal: steps[roundedHomeSize],
     ads: averageDeviationFromIdealWeight,
   }
 }
 
 const calculateETV = (pokemon, maxs, weights) => {
   const e = pokemon.envScore
-  const me = maxs.maxEnv
+  const me = maxs.maxEnv || 1
   const f = pokemon.featureScore
-  const mf = maxs.maxFeatures
+  const mf = maxs.maxFeatures || 1
   const ds = getWeightedDeviationsFromIdeal(pokemon.weight, weights.ideal, weights.sd)
   const ads = weights.ads
 

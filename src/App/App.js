@@ -1,33 +1,41 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { ApolloClient } from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
+import { MuiThemeProvider } from 'material-ui/styles'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import logo from '../logo.svg'
-import './App.css'
-import PokeCardsWithData from '../Components/PokeCards'
+import light from '../theme/light'
+import WithDrawer from '../Layouts/WithDrawer'
+import PokeList from '../Components/PokeList'
+import PokeForm from '../Components/PokeForm'
 
 const client = new ApolloClient({
   link: createHttpLink({ uri: 'https://graphql-pokemon.now.sh' }),
   cache: new InMemoryCache(),
 })
 
-class App extends Component {
-  render () {
-    return (
-      <ApolloProvider client={client}>
-        <div className='App'>
-          <header className='App-header'>
-            <img src={logo} className='App-logo' alt='logo' />
-            <h1 className='App-title'>Welcome to React</h1>
-          </header>
-
-          <PokeCardsWithData />
+const App = () => (
+  <ApolloProvider client={client}>
+    <MuiThemeProvider theme={light}>
+      <Router>
+        <div>
+          <Route
+            exact
+            path='/'
+            render={() => (
+              <WithDrawer drawerForm={<PokeForm />}>
+                <PokeList />
+              </WithDrawer>
+            )}
+          />
+          <Route exact path='/poke' component={PokeList} />
+          <Route path='/form' component={PokeForm} />
         </div>
-      </ApolloProvider>
-    )
-  }
-}
+      </Router>
+    </MuiThemeProvider>
+  </ApolloProvider>
+)
 
 export default App
