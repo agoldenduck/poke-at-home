@@ -1,14 +1,14 @@
 import React from 'react'
 import ObservableComponent from 'rxjs-react-component'
 import PropTypes from 'prop-types'
-import { FormLabel, FormControlLabel, FormGroup } from 'material-ui/Form'
+import { FormLabel, FormControlLabel, FormGroup, FormHelperText } from 'material-ui/Form'
 import Checkbox from 'material-ui/Checkbox'
 import TextField from 'material-ui/TextField'
 import MenuItem from 'material-ui/Menu/MenuItem'
-import Chip from 'material-ui/Chip'
 import Typography from 'material-ui/Typography'
 import { withStyles } from 'material-ui/styles'
 
+import MultiSelect from '../MultiSelect'
 import store$, { setList, setProperty } from '../../util/state'
 import * as param from '../../util/parameters'
 
@@ -31,6 +31,12 @@ const style = {
 class PokeForm extends ObservableComponent {
   componentWillMount$ () {
     return store$
+  }
+
+  closeMultiSelect () {
+    this.setState({
+
+    })
   }
 
   render () {
@@ -124,36 +130,12 @@ class PokeForm extends ObservableComponent {
 
         <FormLabel className={classes.legend} component='legend'>Residence Environments</FormLabel>
 
-        <TextField
-          select
-          margin='normal'
-          SelectProps={{
-            multiple: true,
-            renderValue: selected => (
-              <div>
-                {selected.map(value => <Chip key={value} label={value} />)}
-              </div>
-            ),
-          }}
-          value={environments}
-          name='environments'
-          label='Environments'
-          onChange={e => setProperty('env', e.target.value)}
-          className={classes.select}
-        >
-          {param.env.map(env => (
-            <MenuItem
-              key={env.type}
-              value={env.type}
-              style={{
-                fontWeight:
-                      environments.includes(env.type) ? 'bold' : 'normal',
-              }}
-            >
-              {env.type}
-            </MenuItem>
-          ))}
-        </TextField>
+        <MultiSelect
+          items={param.env.map(env => env.type)}
+          selectedItems={environments}
+        />
+
+        <FormHelperText>Select all that apply</FormHelperText>
 
         <FormLabel className={classes.legend} component='legend'>Residence Features</FormLabel>
 
