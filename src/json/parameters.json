@@ -31,6 +31,7 @@
       "type": "urban",
       "happy": [
         "Steel",
+        "Normal",
         "Flying",
         "Electric",
         "Bug"
@@ -42,7 +43,6 @@
         "Ghost",
         "Grass",
         "Ground",
-        "Normal",
         "Poison",
         "Psychic",
         "Water"

@@ -17,6 +17,9 @@ export default createMuiTheme({
       dark: '#00251a',
       contrastText: '#fff',
     },
+    happy: {
+      main: '#4caf50',
+    },
     'Bug': {
       main: '#8bc34a',
       contrastText: defaultTheme.palette.getContrastText('#8bc34a'),

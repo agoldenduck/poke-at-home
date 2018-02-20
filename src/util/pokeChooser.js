@@ -69,7 +69,7 @@ const getWeightSteps = weights =>
 
 const getWeightedDeviationsFromIdeal = (num, ideal, sd) => {
   const diff = ideal - num
-  return diff < 0 ? Math.min(-diff * 3, Math.pow(diff, 2)) / sd : diff / sd
+  return diff < 0 ? Math.max(-diff * 3, Math.pow(diff, 2)) / sd : diff / sd
 }
 
 const getWeightHelpers = (weights, roundedHomeSize) => {

@@ -4,8 +4,8 @@ import Grid from 'material-ui/Grid'
 
 import PokeCard from '../PokeCard'
 
-const RandomList = ({ className, pokemon }) => (
-  <Grid container justify='center' spacing={24}>
+const RenderList = ({ className, pokemon }) => (
+  <Grid container justify='center' spacing={24} style={{marginBottom: 24}}>
     { pokemon.map(poke => (
       <Grid key={poke.id} item className={className}>
         <PokeCard
@@ -16,9 +16,9 @@ const RandomList = ({ className, pokemon }) => (
   </Grid>
 )
 
-RandomList.propTypes = {
+RenderList.propTypes = {
   className: PropTypes.string,
   pokemon: PropTypes.array.isRequired,
 }
 
-export default RandomList
+export default RenderList
