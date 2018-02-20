@@ -4,17 +4,24 @@ import ObservableComponent from 'rxjs-react-component'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import Grid from 'material-ui/Grid'
+import Typography from 'material-ui/Typography'
 import { withStyles } from 'material-ui/styles'
 
 import PokeCard from '../PokeCard/index'
 import pokeStore$, { collectPokemon } from '../../state/pokemon-state'
+import RandomList from './RandomList'
+import { shuffle } from '../../util'
 
-const style = {
-  container: {},
-  card: {
-    width: 300,
+const style = theme => ({
+  container: {
+    width: 936,
+    margin: 'auto',
+    marginBottom: theme.spacing.unit,
   },
-}
+  card: {
+    width: 320,
+  },
+})
 
 class PokeList extends ObservableComponent {
   componentWillMount$ () {
@@ -28,24 +35,32 @@ class PokeList extends ObservableComponent {
   }
 
   render () {
-    const { data: { loading, error }, classes } = this.props
-    const { pokemon } = this.state
+    const { data: { loading, error }, classes, randomOnly } = this.props
+    const { pokemon, homeReady } = this.state
 
     if (loading) return <p>loading</p>
     if (error) return <p>{error.message}</p>
 
-    console.log(pokemon)
+    if (randomOnly || !homeReady) {
+      return (
+        <RandomList pokemon={shuffle(pokemon)} className={classes.card} />
+      )
+    }
 
     return (
-      <Grid container justify='center' className={classes.container} spacing={24}>
-        { pokemon.map(poke => (
-          <Grid key={poke.id} item className={classes.card}>
-            <PokeCard
-              pokemon={poke}
-            />
-          </Grid>
-        )) }
-      </Grid>
+      <div>
+        <Typography className={classes.container} variant='title'>Happy Pok&eacute;mon</Typography>
+
+        <Grid container justify='center' spacing={24}>
+          { pokemon.filter(poke => poke.etv < 5).map(poke => (
+            <Grid key={poke.id} item className={classes.card}>
+              <PokeCard
+                pokemon={poke}
+              />
+            </Grid>
+          )) }
+        </Grid>
+      </div>
     )
   }
 }
@@ -53,6 +68,7 @@ class PokeList extends ObservableComponent {
 PokeList.propTypes = {
   data: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
+  randomOnly: PropTypes.bool,
 }
 
 const POKEMON_QUERY = gql`

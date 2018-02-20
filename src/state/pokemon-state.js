@@ -3,7 +3,6 @@ import 'rxjs/add/operator/startWith'
 import 'rxjs/add/operator/scan'
 
 import homeState$ from './home-state'
-import { shuffle } from '../util'
 import pokeChooser from '../util/pokeChooser'
 import { env, features } from '../json/parameters'
 
@@ -13,6 +12,7 @@ const action$ = new Subject()
 // Initial State
 const initState = {
   pokemon: [],
+  homeReady: false,
 }
 
 // Redux reducer
@@ -30,6 +30,7 @@ const reducer = (state, action) => {
           homeSize: action.payload.homeSize,
         },
       ),
+      homeReady: true,
     }
     default:
       return state
@@ -46,7 +47,7 @@ const actionDispatcher = (func) => (...args) =>
 // Example action function
 const collectPokemon = actionDispatcher((payload) => ({
   type: 'COLLECTED_POKEMON',
-  payload: shuffle(payload),
+  payload: payload,
 }))
 
 const updatePokemon = state => ({
