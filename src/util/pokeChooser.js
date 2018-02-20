@@ -1,3 +1,5 @@
+import { sort } from './index'
+
 const extractNumber = numString => Number(numString.split(/[km ]/i)[0])
 
 const getStandardDeviation = array => {
@@ -104,7 +106,7 @@ const sortPokemon = (pokemon, maxs, weights) => {
     ({ ...poke, etv: calculateETV(poke, maxs, weights) })
   )
 
-  return sortablePoke.sort((a, b) => a.etv - b.etv)
+  return sort(sortablePoke, a => a.etv)
 }
 
 export default pokeChooser

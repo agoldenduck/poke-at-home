@@ -1,5 +1,5 @@
 import pokeChooser, { extractNumber, getStandardDeviation } from './pokeChooser'
-import * as param from './parameters'
+import * as param from '../json/parameters'
 
 const testPokemon = [
   {

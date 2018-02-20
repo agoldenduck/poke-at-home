@@ -9,8 +9,8 @@ import Typography from 'material-ui/Typography'
 import { withStyles } from 'material-ui/styles'
 
 import MultiSelect from '../MultiSelect'
-import store$, { setList, setProperty } from '../../util/state'
-import * as param from '../../util/parameters'
+import homeStore$, { setList, setProperty } from '../../state/home-state'
+import * as param from '../../json/parameters'
 
 const style = {
   container: {
@@ -30,13 +30,7 @@ const style = {
 
 class PokeForm extends ObservableComponent {
   componentWillMount$ () {
-    return store$
-  }
-
-  closeMultiSelect () {
-    this.setState({
-
-    })
+    return homeStore$
   }
 
   render () {
@@ -114,11 +108,11 @@ class PokeForm extends ObservableComponent {
                   No yard
             </MenuItem>
 
-            <MenuItem value={2}>
+            <MenuItem value={1}>
                   Small yard
             </MenuItem>
 
-            <MenuItem value={4}>
+            <MenuItem value={3}>
                   Big yard
             </MenuItem>
 

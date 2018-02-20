@@ -7,7 +7,7 @@ import Grid from 'material-ui/Grid'
 import { withStyles } from 'material-ui/styles'
 
 import PokeCard from '../PokeCard/index'
-import store$, { collectPokemon } from '../../util/state'
+import pokeStore$, { collectPokemon } from '../../state/pokemon-state'
 
 const style = {
   container: {},
@@ -18,7 +18,7 @@ const style = {
 
 class PokeList extends ObservableComponent {
   componentWillMount$ () {
-    return store$
+    return pokeStore$
   }
 
   componentWillReceiveProps (nextProps) {
@@ -33,6 +33,8 @@ class PokeList extends ObservableComponent {
 
     if (loading) return <p>loading</p>
     if (error) return <p>{error.message}</p>
+
+    console.log(pokemon)
 
     return (
       <Grid container justify='center' className={classes.container} spacing={24}>

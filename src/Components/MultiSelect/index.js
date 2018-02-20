@@ -6,7 +6,7 @@ import Chip from 'material-ui/Chip'
 import Checkbox from 'material-ui/Checkbox'
 import { ListItemText } from 'material-ui/List'
 
-import { setProperty } from '../../util/state'
+import { setProperty } from '../../state/home-state'
 import { withStyles } from 'material-ui/styles/index'
 
 const style = {
@@ -57,7 +57,7 @@ const MultiSelect = props => {
 
 MultiSelect.propTypes = {
   classes: PropTypes.object.isRequired,
-  items: PropTypes.arrayOf(PropTypes.string).isReqired,
+  items: PropTypes.arrayOf(PropTypes.string).isRequired,
   selectedItems: PropTypes.arrayOf(PropTypes.string),
 }
 

@@ -48,23 +48,3 @@ type: Pokemon {
 type: Query {
   pokemon: [Pokemon]
 `
-
-/** types
- "Bug",
- "Dark",
- "Dragon",
- "Electric",
- "Fight",
- "Fire",
- "Flying",
- "Ghost",
- "Grass",
- "Ground",
- "Ice",
- "Normal",
- "Poison",
- "Psychic",
- "Rock",
- "Steel",
- "Water"
-*/
