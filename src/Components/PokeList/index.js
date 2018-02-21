@@ -79,7 +79,7 @@ class PokeList extends ObservableComponent {
     ))
 
     const contentPokemon = pokemon.slice(happyPokemon.length, pokemon.findIndex(poke =>
-      (poke.etv - minETV) > etvSD
+      (poke.etv - minETV) > etvSD || poke.featureScore < 0 || poke.envScore < 0
     ))
 
     return (

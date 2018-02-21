@@ -3,28 +3,28 @@
     {
       "type": "coastal",
       "happy": [
+        "Dragon",
         "Water",
-        "Electric",
+        "Fairy",
         "Flying"
       ],
       "content": [
         "Bug",
         "Dark",
-        "Dragon",
-        "Fairy",
         "Fighting",
         "Ghost",
         "Grass",
         "Ice",
         "Normal",
-        "Psychic",
-        "Steel"
+        "Poison",
+        "Psychic"
       ],
       "unhappy": [
+        "Electric",
         "Fire",
         "Ground",
-        "Poison",
-        "Rock"
+        "Rock",
+        "Steel"
       ]
     },
     {
@@ -32,13 +32,13 @@
       "happy": [
         "Steel",
         "Normal",
+        "Fighting",
         "Flying",
         "Electric",
         "Bug"
       ],
       "content": [
         "Dark",
-        "Fighting",
         "Fire",
         "Ghost",
         "Grass",
@@ -112,28 +112,28 @@
     {
       "type": "forest",
       "happy": [
-        "Fairy",
-        "Flying",
         "Bug",
-        "Dark"
+        "Dark",
+        "Fairy",
+        "Ghost",
+        "Grass"
       ],
       "content": [
         "Dragon",
         "Electric",
         "Fighting",
-        "Ghost",
+        "Flying",
         "Ground",
         "Ice",
         "Normal",
         "Poison",
-        "Steel",
         "Water"
       ],
       "unhappy": [
         "Rock",
-        "Grass",
         "Fire",
-        "Psychic"
+        "Psychic",
+        "Steel"
       ]
     },
     {
@@ -178,7 +178,6 @@
         "Fairy",
         "Fighting",
         "Ghost",
-        "Normal",
         "Psychic",
         "Steel"
       ],
@@ -186,6 +185,7 @@
         "Fire",
         "Grass",
         "Ground",
+        "Normal",
         "Poison",
         "Rock"
       ]
@@ -273,6 +273,5 @@
         "Water"
       ]
     }
-  ],
-  "homeSize": 18
+  ]
 }

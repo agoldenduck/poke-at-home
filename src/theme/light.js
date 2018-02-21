@@ -49,8 +49,8 @@ export default createMuiTheme({
       contrastText: defaultTheme.palette.getContrastText('#ff5722'),
     },
     'Flying': {
-      main: '#ba68c8',
-      contrastText: defaultTheme.palette.getContrastText('#ba68c8'),
+      main: '#ab47bc',
+      contrastText: defaultTheme.palette.getContrastText('#ab47bc'),
     },
     'Ghost': {
       main: '#b39ddb',
@@ -73,8 +73,8 @@ export default createMuiTheme({
       contrastText: defaultTheme.palette.getContrastText('#d7ccc8'),
     },
     'Poison': {
-      main: '#8e24aa',
-      contrastText: defaultTheme.palette.getContrastText('#8e24aa'),
+      main: '#7b1fa2',
+      contrastText: defaultTheme.palette.getContrastText('#7b1fa2'),
     },
     'Psychic': {
       main: '#ec407a',
