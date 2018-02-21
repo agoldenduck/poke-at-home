@@ -16,10 +16,20 @@ import { getStandardDeviation } from '../../util/pokeChooser'
 
 const style = theme => ({
   container: {
-    width: 936,
+    width: 296,
     margin: 'auto',
     marginBottom: theme.spacing.unit,
     display: 'flex',
+
+    '@media screen and (min-width: 640px)': {
+      width: 616,
+    },
+    '@media screen and (min-width: 1200px)': {
+      width: 936,
+    },
+    '@media screen and (min-width: 1520px)': {
+      width: 1256,
+    },
   },
   card: {
     width: 320,
