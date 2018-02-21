@@ -21,7 +21,8 @@ What I'd like to achieve on this project
 - [x] sort Pokemon by suitability to user home
 - [x] build mobile first interface
 - [ ] simulate a store-like interface with home page, results page, and item pages
-- [ ] locally store the user's home
-- [ ] track results
+- [ ] locally store the user's home and favourite pokemon
+- [ ] share your favourites and your results
+- [ ] track results, favourites, and suggestions
 - [ ] host assets through React Storybook
 - [ ] write component tests
