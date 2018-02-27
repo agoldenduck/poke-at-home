@@ -89,10 +89,10 @@
         "Fairy",
         "Flying",
         "Ground",
-        "Bug",
         "Grass"
       ],
       "content": [
+        "Bug",
         "Dark",
         "Dragon",
         "Fighting",

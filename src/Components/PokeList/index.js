@@ -13,6 +13,7 @@ import pokeStore$, { collectPokemon } from '../../state/pokemon-state'
 import RenderList from './RenderList'
 import { shuffle } from '../../util'
 import { getStandardDeviation } from '../../util/pokeChooser'
+import Loading from '../Loading'
 
 const style = theme => ({
   container: {
@@ -21,14 +22,26 @@ const style = theme => ({
     marginBottom: theme.spacing.unit,
     display: 'flex',
 
-    '@media screen and (min-width: 640px)': {
+    '@media screen and (min-width: 664px)': {
       width: 616,
     },
-    '@media screen and (min-width: 1200px)': {
+    '@media screen and (min-width: 1224px)': {
       width: 936,
     },
-    '@media screen and (min-width: 1520px)': {
+    '@media screen and (min-width: 1544px)': {
       width: 1256,
+    },
+    '@media screen and (min-width: 1864px)': {
+      width: 1576,
+    },
+    '@media screen and (min-width: 2184px)': {
+      width: 1896,
+    },
+    '@media screen and (min-width: 2504px)': {
+      width: 2216,
+    },
+    '@media screen and (min-width: 2824px)': {
+      width: 2536,
     },
   },
   card: {
@@ -51,11 +64,12 @@ class PokeList extends ObservableComponent {
   }
 
   render () {
-    const { data: { loading, error }, classes, theme, randomOnly } = this.props
+    const { data: { error }, classes, theme, randomOnly } = this.props
     const { pokemon, homeReady } = this.state
 
-    if (loading) return <p>loading</p>
     if (error) return <p>{error.message}</p>
+
+    if (pokemon.length === 0) return <Loading />
 
     if (randomOnly || !homeReady) {
       return (
