@@ -69,7 +69,9 @@ class PokeList extends ObservableComponent {
 
     if (error) return <p>{error.message}</p>
 
-    if (pokemon.length === 0) return <Loading />
+    const loading = <Loading />
+
+    if (pokemon.length === 0) return loading
 
     if (randomOnly || !homeReady) {
       return (
