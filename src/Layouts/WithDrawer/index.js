@@ -8,7 +8,6 @@ import Drawer from 'material-ui/Drawer'
 import AppBar from 'material-ui/AppBar'
 import Toolbar from 'material-ui/Toolbar'
 import IconButton from 'material-ui/IconButton'
-// import List from 'material-ui/List'
 import Divider from 'material-ui/Divider'
 import Typography from 'material-ui/Typography'
 import { withStyles } from 'material-ui/styles'
@@ -28,7 +27,7 @@ const styles = theme => ({
     height: '100%',
   },
   appBar: {
-    position: 'absolute',
+    position: 'fixed',
     marginLeft: drawerWidth,
     [theme.breakpoints.up('md')]: {
       width: `calc(100% - ${drawerWidth}px)`,

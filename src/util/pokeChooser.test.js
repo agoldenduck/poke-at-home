@@ -1,5 +1,5 @@
 import pokeChooser, { extractNumber, getStandardDeviation } from './pokeChooser'
-import * as param from './parameters'
+import * as param from '../json/parameters'
 
 const testPokemon = [
   {
@@ -61,7 +61,10 @@ it('returns 2 for the standard deviation of test pokemon weight', () => {
   expect(getStandardDeviation(testPokemon.map(poke => extractNumber(poke.weight.maximum)))).toBe(2)
 })
 
-it(`returns 'Spearow' as happiest in all environments`, () => {
-  const newPokemon = pokeChooser(testPokemon, param)
-  expect(newPokemon[0].name).toBe('Spearow')
+it(`returns 'Slowpoke' as happiest in all environments`, () => {
+  const newPokemon = pokeChooser(testPokemon, {
+    ...param,
+    homeSize: 18,
+  })
+  expect(newPokemon[0].name).toBe('Slowpoke')
 })
