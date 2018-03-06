@@ -1,8 +1,8 @@
-# Poke @ Home
+# Poké @ Home
 
 [![Build Status](https://travis-ci.org/agoldenduck/poke-at-home.svg?branch=master)](https://travis-ci.org/agoldenduck/poke-at-home)
 
-Poke @ Home is a little experiment based on a code challenge I was set using [Lucas Bento's Pokemon GraphQL server](https://github.com/lucasbento/graphql-pokemon).
+Poké @ Home is a little experiment based on a code challenge I was set using [Lucas Bento's Pokemon GraphQL server](https://github.com/lucasbento/graphql-pokemon).
 
 [Try demo](https://pokemonhome.netlify.com/)
 
